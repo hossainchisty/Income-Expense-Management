@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-e4!t)5y(pu0$j*fkh)mr_e-$27he&x1jxwl%oha_l&x%$r5)4d"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False 
 
 ALLOWED_HOSTS = ["django-income-expense-manager.herokuapp.com"]
 # https://django-income-expense-manager.herokuapp.com/
@@ -72,8 +72,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-#                 "income.context_processors.getIncomeData",
-#                 "expenses.context_processors.getExpenseData",
+                "income.context_processors.getIncomeData",
+                "expenses.context_processors.getExpenseData",
             ],
         },
     },
