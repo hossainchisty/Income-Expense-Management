@@ -1,0 +1,80 @@
+{% load static %}
+       <!-- Sidebar -->
+        <ul class="navbar-nav bg-indigo-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">
+                    IEM
+                <sup></sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'income' %}">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>Income</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'expense' %}">
+                    <i class="fas fa-money-check-alt"></i>
+                    <span>Expense</span></a>
+            </li>
+
+             <li class="nav-item active">
+                <a class="nav-link" href="{% url 'income-summary'%}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Income Summary</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'expense-summary'%}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Expense Summary</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Profile</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">User Screens:</h6>
+                        {% if request.user.is_authenticated %}
+                        <a class="collapse-item" href="{% url 'profile'%}">Profile</a>
+                        <a class="collapse-item" href="{% url 'setting' %}">Settings</a>
+                        <a class="collapse-item" href="{% url 'logout' %}">Logout</a>
+                        <a class="collapse-item" href="{% url 'password_reset' %}">Forgot Password</a>
+                        {% else %}
+                        <a class="collapse-item" href="{% url 'register'%}">Register</a>
+                        <a class="collapse-item" href="{% url 'login' %}">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->

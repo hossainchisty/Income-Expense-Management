@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Customer Relationship Management">
+    <meta name="author" content="">
+    <title>{% block title %}Expenses | Dashboard{% endblock title %}</title>
+   
+
+    {% include 'partials/__css.html' %}
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include 'partials/__sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                <!-- Topbar Navbar -->
+                {% include 'partials/__topNavbar.html' %}
+                
+                <div class="container-fluid">
+                    <!-- Expenses Table -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Manage Expenses</h6>
+                        </div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary">
+                            <i class="fa fa-plus"></i><a class="text-white hover:no-underline" href="{% url 'add-expense'%}">Add Expenses</a></button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>SL.</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Balance</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        
+                                        {% for expenses in expenselist %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{expenses.name}}</td>
+                                            <td>{{expenses.description}}</td>
+                                            <td>${{expenses.amount}}</td>
+                                              <td><i class="material-icons">
+                                            <a 
+                                            href="{% url 'delete' expenses.id %}" class="text-decoration-none text-red-600 hover:text-red-600">Delete</a>
+                                            
+
+                                            <a href="{% url 'update' expenses.id %}" class="m-1 text-decoration-none text-green-600 hover:text-green-600">Edit</a>
+                                            </i></td>
+                                        </tr>
+                                        {% endfor %}
+                                            
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Expenses Table -->
+                </div>
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout'%}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/__js.html' %}
+
+</body>
+
+</html>
