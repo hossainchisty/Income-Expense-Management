@@ -27,19 +27,19 @@ cd Income-Expense-Management
 ```
 5. Install dependencies
 ```bash
-  pip install -r requirements.txt
+(env)$ pip install -r requirements.txt
 ``` 
 
 6. Run local server, and DONE!
 ```python
-  python manage.py runserver
+(env)$ python manage.py runserver
 ```
 
 7.Then go to ```http://127.0.0.1:8000``` in your browser.
 
 ### To create superuser open terminal and type:
 ```
-python manage.py createsuperuser
+(env)$ python manage.py createsuperuser
 ```
 
 Thanks ❤ Happy Coding 🎉
