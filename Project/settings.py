@@ -114,7 +114,7 @@ CACHE_MIDDLEWARE_SECONDS = 20
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "LOCATION": "income_expenses_caches",
+        "LOCATION": "income_expenses_manager_caches",
     }
 }
 # python manage.py createachetable
