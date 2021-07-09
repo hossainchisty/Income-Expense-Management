@@ -65,9 +65,9 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     # Cache middleware configuration
-    "django.middleware.cache.UpdateCacheMiddleware",
+    # "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.cache.FetchFromCacheMiddleware",
+    # "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -109,14 +109,14 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/topics/cache/
 
 # The cache timeout, in seconds
-CACHE_MIDDLEWARE_SECONDS = 20
+# CACHE_MIDDLEWARE_SECONDS = 20
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "LOCATION": "income_expenses_caches",
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+#         "LOCATION": "income_expenses_manager_caches",
+#     }
+# }
 # python manage.py createachetable
 # Filesystem caching
 
