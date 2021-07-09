@@ -59,13 +59,15 @@ pytestdebug.log
 
 # Django stuff:
 *.log
-local_settings.py
 db.sqlite3
+*db.sqlite3
 db.sqlite3-journal
-/expenses/__pycache__/
-/accounts/__pycache__/
-/income/__pycache__/
-
+expenses/__pycache__/
+accounts/__pycache__/
+income/__pycache__/
+Project/__pycache__/
+*ping.py
+/templates/config/
 # Flask stuff:
 instance/
 .webassets-cache
@@ -140,3 +142,6 @@ dmypy.json
 
 # VS code path settings
 /.vscode/
+
+# File stytem caches
+cache/
