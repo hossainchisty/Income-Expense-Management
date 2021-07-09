@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load humanize %}
 <head>
 
     <meta charset="utf-8">
@@ -47,10 +48,30 @@
                         </div>
                     </form>
 
-                    {% include 'partials/__topNavbar.html' %}
+                {% include 'partials/__topNavbar.html' %}
+                <style>
+                    .alert{
+                        position: relative;
+                        margin: 30px;
+                        padding: 0.7rem 2rem;
+                        border: 1px solid transparent;
+                        border-radius: 31.35rem;
+                    }
+                </style>
+
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ message|safe }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
 
                 <div class="container-fluid">
-                    <!-- Customer Table -->
+                    <!-- Income Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Manage Income</h6>
@@ -69,17 +90,19 @@
                                             <th>Amount</th>
                                             <th>Description</th>
                                             <th>Sources</th>
+                                             <th>Created at</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
-                                    {% for items in incomes %}
+                                    {% for items in page_obj  %}
                                     <tbody>
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
                                             <td>${{ items.amount }}</td>
                                             <td>{{ items.description }}</td>
                                             <td>{{ items.sources}}</td>
+                                            <td>{{ items.date|naturaltime }}</td>
                                             <td><i class="material-icons">
                                             <a 
                                             href="{% url 'delete-income' items.id %}" class="text-decoration-none text-red-600 hover:text-red-600">Delete</a>
@@ -94,15 +117,36 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Customer Table -->
-                </div>
+                    <!-- Income Table -->
 
+                    <!-- Pagination Start -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            {% if page_obj.has_previous %}
+                                <a class="page-link" href="?page=1">&laquo; First</a>
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+
+                            {% if page_obj.has_next %}
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                            {% endif %}
+
+                            <li class="page-item"><a class="page-link" href="#"> 
+                            {{ page_obj.number }}</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                            {{ page_obj.paginator.num_pages }}</a></li>
+                     
+                        </ul>
+                    </nav>
+                    <!-- Pagination End -->
+
+                </div>
             </div>
             <!-- End of Main Content -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
 
@@ -111,9 +155,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
             
-    
-    
-
      <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

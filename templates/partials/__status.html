@@ -1,11 +1,17 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                
                     <!-- Page Heading -->
                      <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Income Expense Manager</h1>
-                        <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <a  href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> 
+                        <button id="reportBtn">Generate Report</button>
+                        </a> 
+                        <script>
+                            let report = document.querySelector('#reportBtn').addEventListener('click',function() {
+                                alert('Coming Soon...')
+                            });
+                        </script>
                     </div> 
 
                     <!-- Content Row -->
@@ -19,10 +25,11 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 YOUR BALANCE</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{total_balance}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            ${{total_balance|floatformat:2}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-dollar-sign"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-500"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -39,10 +46,10 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Income</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            ${{totolIncome}}</div>
+                                            ${{totolIncome|floatformat:2}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="far fa-money-bill-alt"></i>
+                                            <i class="far fa-money-bill-alt fa-2x text-gray-500"></i>
                                            
                                         </div>
                                     </div>
@@ -51,7 +58,7 @@
                         </div>
                         <!-- End  -->
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Expenses Card  -->
                         <div class="col-xl-3 col-md-6 mb-5">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
@@ -61,13 +68,13 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${{totalExpense}}</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${{totalExpense|floatformat:2}}</div>
                                                 </div>
                                                
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                          <i class="fas fa-money-check-alt"></i>
+                                          <i class="fas fa-money-check-alt fa-2x text-gray-500"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -75,18 +82,18 @@
                         </div>
                         <!-- End  -->
 
-                         <!-- Pending Requests Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Bills/receipts  -->
+                        <div class="col-xl-3 col-md-6 mb-5">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Bills/receipts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2300</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-receipt fa-2x text-gray-500"></i>
                                         </div>
                                     </div>
                                 </div>

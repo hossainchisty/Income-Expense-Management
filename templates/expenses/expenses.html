@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load humanize %}
 <head>
 
     <meta charset="utf-8">
@@ -52,7 +52,27 @@
 
                 <!-- Topbar Navbar -->
                 {% include 'partials/__topNavbar.html' %}
+                <style>
+                    .alert{
+                        position: relative;
+                        margin: 30px;
+                        padding: 0.7rem 2rem;
+                        border: 1px solid transparent;
+                        border-radius: 31.35rem;
+                    }
+                </style>
                 
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ message|safe }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
                 <div class="container-fluid">
                     <!-- Expenses Table -->
                     <div class="card shadow mb-4">
@@ -67,21 +87,23 @@
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
-                                            <th>Name</th>
+                                            <th>Why</th>
                                             <th>Description</th>
                                             <th>Balance</th>
+                                            <th>Created at</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         
-                                        {% for expenses in expenselist %}
+                                        {% for expenses in page_obj %}
                                         <tr>
                                             <td>{{forloop.counter}}</td>
-                                            <td>{{expenses.name}}</td>
+                                            <td>{{expenses.why}}</td>
                                             <td>{{expenses.description}}</td>
                                             <td>${{expenses.amount}}</td>
+                                            <td>{{expenses.date|naturaltime}}</td>
                                               <td><i class="material-icons">
                                             <a 
                                             href="{% url 'delete' expenses.id %}" class="text-decoration-none text-red-600 hover:text-red-600">Delete</a>
@@ -98,6 +120,28 @@
                         </div>
                     </div>
                     <!-- Expenses Table -->
+                     <!-- Pagination Start -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            {% if page_obj.has_previous %}
+                                <a class="page-link" href="?page=1">&laquo; First</a>
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+
+                            {% if page_obj.has_next %}
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                            {% endif %}
+
+                            <li class="page-item"><a class="page-link" href="#"> 
+                            {{ page_obj.number }}</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                            {{ page_obj.paginator.num_pages }}</a></li>
+                     
+                        </ul>
+                    </nav>
+                    <!-- Pagination End -->
                 </div>
             </div>
             <!-- End of Main Content -->

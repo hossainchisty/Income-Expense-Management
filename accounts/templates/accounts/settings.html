@@ -1,7 +1,7 @@
 {% extends 'partials/__base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-<title>{% block title %}Settings{% endblock title %}</title>
+<title>{% block title %}Edit Profile | {{ request.get_host }} {% endblock title %}</title>
 {% block body %}
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -198,7 +198,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                 
                     <!-- Topbar Navbar -->     
                     {% include 'partials/__topNavbar.html' %}
                      <!-- End of Topbar -->
@@ -240,23 +239,15 @@
                             {% csrf_token %}
                             {{form|crispy}}
                             <div class="py-3 pb-4 border-bottom"> 
-                                <button type="submit" class="btn btn-primary mr-3">Save Changes</button> 
-                                <a class="hover:no-underline" href="{% url 'profile' %}">Cancel</a>
+                                <button type="submit" class="btn btn-primary mr-3">Submit</button> 
+                                <div class="ml-40" style="color: #0095f6;">
+                                    <a class="hover:no-underline" href="{% url 'deactivatePage'%}">Temporarily disable my account</a> 
+                                </div>
                             </div>
                         </div>
                     </form>
-                        
-  
-                        {% comment %} <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-                            <div> <b>Deactivate your account</b>
-                                <p>Details about your company account and password</p>
-                            </div>
-                            <div class="ml-auto"> <button class="btn danger">Deactivate</button> </div>
-                        </div> {% endcomment %}
-                    </div>
                 </div>
-                    
-               
-            </div>
-            <!-- End of Main Content -->
+             </div>
+        </div>
+<!-- End of Main Content -->
  {% endblock body %}

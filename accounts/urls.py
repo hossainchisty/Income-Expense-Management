@@ -16,6 +16,8 @@ urlpatterns = [
         auth_views.LogoutView.as_view(template_name="auth/logout.html"),
         name="logout",
     ),
+    path("deactivate/", views.deactivateUser, name="deactivateUser"),
+    path("remove/request/temporary/", views.deactivatePage, name="deactivatePage"),
     # Password Reset with email
     path(
         "reset_password/",

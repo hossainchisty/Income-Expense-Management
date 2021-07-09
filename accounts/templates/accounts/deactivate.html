@@ -1,7 +1,7 @@
 {% extends 'partials/__base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-<title>{% block title %}Change Password{% endblock title %}</title>
+<title>{% block title %}Edit Profile | {{ request.get_host }} {% endblock title %}</title>
 {% block body %}
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -29,11 +29,11 @@
                     <span>Dashboard</span></a>
             </li>
             <!-- Divider -->
-               {% comment %} <li class="nav-item active">
-                <a class="nav-link" href="{% url 'setting' %}">
+               <li class="nav-item active">
+                <a class="nav-link" href="{% url 'profile' %}">
                     <i class="fas fa-arrow-left"></i>
-                    <span>Back settings</span></a>
-                </li> {% endcomment %}
+                    <span>Back Profile</span></a>
+                </li> 
           
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -76,7 +76,7 @@
 
             body {
             font-family: 'Poppins', sans-serif;
-            background-color: aliceblue
+            background-color: aliceblue;
             }
 
             .wrapper {
@@ -89,49 +89,7 @@
 
             h4 {
             letter-spacing: -1px;
-            font-weight: 400
-            }
-
-            .img {
-            width: 70px;
-            height: 70px;
-            border-radius: 41px;
-            object-fit: cover;
-            }
-
-            #img-section p,
-            #deactivate p {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 10px;
-            text-align: justify;
-            }
-
-            #img-section b,
-            #img-section button,
-            #deactivate b {
-            font-size: 14px
-            }
-
-            label {
-            margin-bottom: 0;
-            font-size: 14px;
-            font-weight: 500;
-            color: #777;
-            padding-left: 3px
-            }
-
-            .form-control {
-            border-radius: 10px
-            }
-
-            input[placeholder] {
-            font-weight: 500
-            }
-
-            .form-control:focus {
-            box-shadow: none;
-            border: 1.5px solid #0779e4
+            font-weight: 400;
             }
 
             select {
@@ -142,31 +100,11 @@
             height: 40px;
             padding: 5px 10px
             }
-
-            select:focus {
-            outline: none
-            }
-
-            .button {
-            background-color: #fff;
-            color: #0779e4
-            }
-
-            .button:hover {
-            background-color: #0779e4;
-            color: #fff
-            }
-
-            .btn-primary {
-            background-color: #0779e4
-            }
-
             .danger {
             background-color: #fff;
             color: #e20404;
             border: 1px solid #ddd
             }
-
             .danger:hover {
             background-color: #e20404;
             color: #fff
@@ -174,12 +112,10 @@
 
             @media(max-width:576px) {
             .wrapper {
-            padding: 25px 6.5rem!important;
-         
+            padding: 25px 20px
             }
-
             #deactivate {
-            line-height: 18px
+            line-height: 18px;
             }
             }
             /* setting end */
@@ -199,53 +135,32 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                <!-- Topbar Navbar -->     
-                {% include 'partials/__topNavbar.html' %}
-                <!-- End of Topbar -->
-                <style>
-                    .alert{
-                        position: relative;
-                        margin: 30px;
-                        padding: 0.7rem 2rem;
-                        border: 1px solid transparent;
-                        border-radius: 31.35rem;
-                    }
-                </style>
+                 
+                    <!-- Topbar Navbar -->     
+                    {% include 'partials/__topNavbar.html' %}
+                     <!-- End of Topbar -->
 
-
-                 {% for message in messages %}
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ message }}</strong><a  href="{% url 'profile' %}">view your profile.</a>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                {% endfor %}
-
-                <div class="wrapper bg-white">
-                    <h4 class="title text-dark mt-3" style="font-weight: 800;">Change Password</h4>
-                    <div class="d-flex align-items-start py-2 border-bottom"> 
-                    <img src="{{ request.user.profile.image.url }}" class="img" alt="">
-
-                    <div class="pl-sm-4 pl-2" id="img-section">
-                    <b>{{request.user.get_full_name}}</b>
-                        
+                </nav>
+                <!-- End of Topbar -->       
+            <div class="wrapper bg-white">
+                <h4 class="pb-4 border-bottom">Temporarily Disable Your Account</h4>
+                    <div class="d-flex align-items-start py-3 border-bottom"> 
+                    <p>
+                        Hi <span class="font-weight-bold">{{request.user.username}},</span>
+                        <br>
+                        <br>
+                        You can disable your account instead of deleting it. This means your account will be hidden until you reactivate it by logging back in.  
+                    </p>
+                </div>           
+                <div class="py-3 pb-4 border-bottom"> 
+                    <div class="ml-auto">
+                        <a  href="{% url 'deactivateUser' %}"  
+                            class="hover:no-underline btn danger">
+                            Temporarily disable my account
+                        </a>
                     </div>
                 </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <div class="py-2">
-                            {{form|crispy}}
-                        <div class="py-3 pb-4 border-bottom"> 
-                        <button type="submit" class="btn btn-primary mr-3">Change Password</button> 
-                        
-                        <a class="border-none text-blue-500 hover:no-underline" href="{% url 'password_reset' %}">Forgot Password?</a>
-                        
-                        </div>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
+            </div>   
+        </div>
             <!-- End of Main Content -->
  {% endblock body %}

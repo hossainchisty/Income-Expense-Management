@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 import os
 import django_heroku
 import dj_database_url
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-e4!t)5y(pu0$j*fkh)mr_e-$27he&x1jxwl%oha_l&x%$r5)4d"
+SECRET_KEY = "_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True
 
-ALLOWED_HOSTS = ["django-income-expense-manager.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1:8000", "django-income-expense-manager.herokuapp.com"]
 # https://django-income-expense-manager.herokuapp.com/
 
 # Application definition
@@ -40,19 +40,34 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Thirt part app
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
+    # local apps
     "income.apps.IncomeConfig",
     "expenses.apps.ExpensesConfig",
     "accounts.apps.AccountsConfig",
+    # third party apps
     "django.contrib.humanize",
     "crispy_forms",
+    "django_countries",
 ]
+# production
+SITE_ID = 2
+
+# local
+# SITE_ID = 3
+
+if DEBUG == False:
+    SECURE_SSL_REDIRECT = True
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # Cache middleware configuration
+    "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -72,8 +87,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "income.context_processors.getIncomeData",
-                "expenses.context_processors.getExpenseData",
             ],
         },
     },
@@ -91,6 +104,28 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# Database caching
+# https://docs.djangoproject.com/en/3.2/topics/cache/
+
+# The cache timeout, in seconds
+CACHE_MIDDLEWARE_SECONDS = 20
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "income_expenses_caches",
+    }
+}
+# python manage.py createachetable
+# Filesystem caching
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+#         "LOCATION": "G:\Income and expenses\cache",
+#     }
+# }
 
 
 # Password validation
@@ -138,18 +173,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # sTATIC FILES Configuration
 STATICFILES_DIRS = ["static"]
-
 MEDIA_URL = "/media/"
-
 MEDIA_ROOT = BASE_DIR / "media"
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 django_heroku.settings(locals())
 
@@ -163,3 +194,13 @@ EMAIL_HOST_PASSWORD = "********"
 
 # CRISPY FORM
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+
+# python manage.py check --deploy
+# from django.contrib.sites.models import Site
+
+# new = Site.objects.get(
+#     domain="https://django-income-expense-manager.herokuapp.com",
+#     name="income-expense-manager",
+# )
+# print(new.id)
