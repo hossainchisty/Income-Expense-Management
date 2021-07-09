@@ -6,7 +6,10 @@
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% load cache %}
+            {% cache 500 sidebar request.user.get_full_name %}                    
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.get_full_name}}</span>
+            {% endcache %}
           
             <img class="img-profile rounded-circle" src="{{ request.user.profile.image.url }}">
         </a>
