@@ -117,6 +117,7 @@ DATABASES = {
 #         "LOCATION": "income_expenses_manager_caches",
 #     }
 # }
+
 # python manage.py createachetable
 # Filesystem caching
 
