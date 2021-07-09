@@ -11281,3 +11281,8 @@ body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
 
+/* Caret color -Colorize the caret color */
+
+input {
+  caret-color: DodgerBlue;
+}
