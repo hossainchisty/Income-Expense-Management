@@ -39,39 +39,29 @@ from expenses.models import Expense
 
 @login_required(login_url="login")
 def dashboard(request):
+
     expense = Expense.objects.filter(owner=request.user).aggregate(Sum("amount"))
     income = Income.objects.filter(user=request.user).aggregate(Sum("amount"))
 
+    if expense["amount__sum"] == None:
+        # type: ignore
+        expense["amount__sum"] = "0"
+    else:
+        expense["amount__sum"]
+
+    if income["amount__sum"] == None:
+        # type: ignore
+        income["amount__sum"] = "0"
+    else:
+        income["amount__sum"]
+
     totalbalance = float(expense["amount__sum"]) + float(income["amount__sum"])
+    if totalbalance == None:
+        # type: ignore
+        totalbalance = "0"
+    else:
+        totalbalance = totalbalance
 
-    weekly_aggregate = (
-        Income.objects.annotate(week=ExtractWeek("date"))
-        .values("week")
-        .annotate(count=Count("id"))
-        .values("week", "count")
-    )
-    # print(weekly_aggregate)
-    # Add the income start year as a field in the QuerySet.
-    experiment = Income.objects.annotate(weekday=ExtractWeekDay("date"))
-
-    unique = User.objects.values("is_active").annotate(
-        total=Count("id"),
-        unique_names=Count("last_name", distinct=True),
-    )
-    # print(unique)
-    # print(experiment)
-    # How many experiments completed in the same year in which they started?
-    # years = Income.objects.filter(start_datetime__year=Extract("date", "year")).count()
-    # print(years)
-
-    testUSer = User.objects.values("date_joined__year").annotate(
-        staff_users=(Count("id", filter=Q(is_staff=True))),
-        non_staff_users=(Count("id", filter=Q(is_staff=False))),
-    )
-    # print(testUSer)
-
-    # currentUSer = User.objects.values("date_joined__year").annotate(total=Count("id"))
-    # print(currentUSer)
     context = {
         "totolIncome": income["amount__sum"],
         "totalExpense": expense["amount__sum"],

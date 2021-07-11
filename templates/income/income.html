@@ -95,7 +95,7 @@
                                         </tr>
                                     </thead>
 
-                                    {% for items in page_obj  %}
+                                    {% for items in incomes  %}
                                     <tbody>
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <!-- Income Table -->
-
+                    {% if incomes %}
                     <!-- Pagination Start -->
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
@@ -141,6 +141,7 @@
                         </ul>
                     </nav>
                     <!-- Pagination End -->
+                    {% endif %}
 
                 </div>
             </div>

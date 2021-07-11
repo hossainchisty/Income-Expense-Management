@@ -97,7 +97,7 @@
 
                                     <tbody>
                                         
-                                        {% for expenses in page_obj %}
+                                        {% for expenses in expenselist %}
                                         <tr>
                                             <td>{{forloop.counter}}</td>
                                             <td>{{expenses.why}}</td>
@@ -121,6 +121,7 @@
                     </div>
                     <!-- Expenses Table -->
                      <!-- Pagination Start -->
+                    {% if expenselist %}
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             {% if page_obj.has_previous %}
@@ -141,6 +142,7 @@
                      
                         </ul>
                     </nav>
+                    {% endif %}
                     <!-- Pagination End -->
                 </div>
             </div>
