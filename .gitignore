@@ -67,7 +67,6 @@ accounts/__pycache__/
 income/__pycache__/
 Project/__pycache__/
 *ping.py
-/templates/config/
 # Flask stuff:
 instance/
 .webassets-cache
