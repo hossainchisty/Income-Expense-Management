@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1:8000", "django-income-expense-manager.herokuapp.com"]
 # https://django-income-expense-manager.herokuapp.com/
@@ -186,12 +186,14 @@ LOGOUT_REDIRECT_URL = "/"
 django_heroku.settings(locals())
 
 # SMTP Configuration
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "example@gmail.com"
-EMAIL_HOST_PASSWORD = "********"
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "example@gmail.com"
+# EMAIL_HOST_PASSWORD = "********"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # CRISPY FORM
 CRISPY_TEMPLATE_PACK = "bootstrap4"
