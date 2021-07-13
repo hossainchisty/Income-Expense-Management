@@ -1,4 +1,4 @@
-### Income expense manager is easiest and user friendly application to control your finance🤍✨🚀
+### Income expense manager is easiest and user friendly application to control your finance🚀
 
 <!-- Income Expense Manager -->
 
@@ -48,4 +48,5 @@ cd Income-Expense-Management
 Thanks ❤ Happy Coding 🎉
 <br>
 Author: Hossain Chisty
+<br>
 Copyright (c) 2021 Hossain Chisty
