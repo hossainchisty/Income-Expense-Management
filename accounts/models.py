@@ -11,6 +11,8 @@ class Profile(models.Model):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profiles", default="profiles/default.png")
+    name = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(max_length=500, blank=True, null=True)
     bio = models.TextField(null=True, blank=True)
     phone_number = RegexValidator(
         regex=r"^\+(?:[0-9]●?){6,14}[0-9]$",
