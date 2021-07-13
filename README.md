@@ -1,6 +1,9 @@
-## Income Expense Management Build with Python and Django🤍
+### Income expense manager is easiest and user friendly application to control your finance🤍✨🚀
 
-Live Demo can be viewed at https://django-income-expense-manager.herokuapp.com/
+<!-- Income Expense Manager -->
+
+Live Demo can be viewed at [Income Expense Manager](https://django-income-expense-manager.herokuapp.com/)
+
 ### Setup, Installation and Run
 
 To run the app on your local machine, you need Python 3+, installed on your computer. Follow all the steps to run this project.
@@ -45,3 +48,4 @@ cd Income-Expense-Management
 Thanks ❤ Happy Coding 🎉
 <br>
 Author: Hossain Chisty
+Copyright (c) 2021 Hossain Chisty
