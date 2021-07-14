@@ -45,7 +45,8 @@ cd Income-Expense-Management
 (env)$ python manage.py createsuperuser
 ```
 
-Thanks ❤ Happy Coding 🎉
+Thanks ❤
+Happy Coding 🎉
 <br>
 Author: Hossain Chisty
 <br>
