@@ -2,13 +2,16 @@ from django.urls import path
 from .views import *
 from . import views
 from django.contrib.auth import views as auth_views
+from accounts.decorators import unauthenticated_user
 
 urlpatterns = [
     # Registration and Login
     path("sign-up/", views.register, name="register"),
     path(
         "sign-in/",
-        auth_views.LoginView.as_view(template_name="auth/login.html"),
+        unauthenticated_user(
+            auth_views.LoginView.as_view(template_name="auth/login.html")
+        ),
         name="login",
     ),
     path(
