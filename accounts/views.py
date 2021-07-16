@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, TemplateView, CreateView, UpdateView
 from django.contrib.auth import authenticate, login, update_session_auth_hash
 from .forms import RegistrationForm, ProfileForm
+from .decorators import unauthenticated_user
 from django.contrib.auth.forms import (
     PasswordChangeForm,
     # A form for allowing a user to change their password.
@@ -21,6 +22,7 @@ from django.contrib.auth.forms import (
 )
 
 
+@unauthenticated_user
 def register(request):
     """
     A form that creates a user, with no privileges, from the given username and
@@ -112,11 +114,6 @@ class ImageUpdateView(LoginRequiredMixin, TemplateView):
         user.save()
         messages.success(request, "Image Updated Successfully")
         return redirect("profile")
-
-
-"""
-Customizing-error-views
-"""
 
 
 def page_not_found_error(request, exception):
