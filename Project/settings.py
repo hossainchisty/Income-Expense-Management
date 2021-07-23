@@ -8,6 +8,7 @@ import os
 import django_heroku
 import dj_database_url
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,10 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config("DEBUG")
 
 ALLOWED_HOSTS = ["127.0.0.1:8000", "django-income-expense-manager.herokuapp.com"]
 # https://django-income-expense-manager.herokuapp.com/
@@ -180,24 +181,14 @@ LOGOUT_REDIRECT_URL = "/"
 django_heroku.settings(locals())
 
 # SMTP Configuration
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = "example@gmail.com"
-# EMAIL_HOST_PASSWORD = "********"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config("MAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("MAIL_HOST_PASSWORD")
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # CRISPY FORM
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-
-
-# python manage.py check --deploy
-# from django.contrib.sites.models import Site
-
-# new = Site.objects.get(
-#     domain="https://django-income-expense-manager.herokuapp.com",
-#     name="income-expense-manager",
-# )
-# print(new.id)
