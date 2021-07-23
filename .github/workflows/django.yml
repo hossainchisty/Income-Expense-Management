@@ -1,4 +1,4 @@
-name: Income Expense Manager CI
+name: Income Expense Manager (Continuous integration)CI
 
 on:
   push:
