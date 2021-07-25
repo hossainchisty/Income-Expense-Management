@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG")
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1:8000", "django-income-expense-manager.herokuapp.com"]
 # https://django-income-expense-manager.herokuapp.com/
@@ -191,8 +191,8 @@ django_heroku.settings(locals())
 
 EMAIL_HOST = "smtp.zoho.com"
 EMAIL_PORT = 465
-EMAIL_HOST_USER = config("MAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("PASSWORD")
+EMAIL_HOST_USER = "hossain.chisty@zohomail.com"
+EMAIL_HOST_PASSWORD = "#2#3B399TiU@aBC"
 EMAIL_USE_SSL = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
