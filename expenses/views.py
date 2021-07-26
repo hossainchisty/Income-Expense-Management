@@ -13,7 +13,8 @@ from .models import Expense
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.sites.models import Site
 
-
+import csv
+from django.http import HttpResponse
 class expenseList(LoginRequiredMixin, ListView):
     model = Expense
     template_name = "expenses/expenses.html"
@@ -61,3 +62,16 @@ class expensesDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 @login_required(login_url="login")
 def expenseSummary(request):
     return render(request, "expenses/expenses_summary.html")
+
+@login_required(login_url="login")
+def exportExpense(request):
+    response = HttpResponse(content_type='text/csv')
+
+    w = csv.writer(response)
+    w.writerow(['Amount', 'Why', 'Description', 'Time and Date'])
+
+    for expense in Expense.objects.filter(owner=request.user).values_list('amount','why', 'description', 'date'):
+        w.writerow(expense)
+
+    response['Content-Disposition'] = 'attachment; filename="expenses_summary.csv"'
+    return response

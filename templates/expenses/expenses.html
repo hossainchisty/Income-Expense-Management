@@ -77,7 +77,14 @@
                     <!-- Expenses Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Manage Expenses</h6>
+                            <h5 class="m-0 font-weight-bold text-primary">Manage Expenses</h5>
+                        </div>
+                        <div class="d-sm-flex align-items-start justify-content-between mb-0">
+                            <h1 class="h3 mb-0 text-gray-800"></h1>
+                            <a  href="{% url 'expense-export' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> 
+                            <button>Download Report</button></a>
+                            </a> 
                         </div>
                         <div class="card-body">
                             <button type="button" class="btn btn-primary">

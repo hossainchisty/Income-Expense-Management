@@ -7,4 +7,6 @@ urlpatterns = [
     path("update/<int:pk>", views.expensesUpdate.as_view(), name="update"),
     path("delete/<int:pk>", views.expensesDelete.as_view(), name="delete"),
     path("summary/", views.expenseSummary, name="expense-summary"),
+    path("export/", views.exportExpense, name="expense-export"),
+   
 ]

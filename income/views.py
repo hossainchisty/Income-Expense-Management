@@ -24,18 +24,19 @@ from django.db.models.functions import (
     Extract,
 )
 
-from django.db.models import F, Q
+import csv
 import datetime
+from datetime import datetime
+from datetime import timedelta
 from django.db import connection
 from django.utils import timezone
+from django.db.models import F, Q
+from django.http import HttpResponse
 from django.views.decorators.cache import cache_page
-from datetime import timedelta
-from datetime import datetime
 
 # Imports models
 from .models import Income
 from expenses.models import Expense
-
 
 @login_required(login_url="login")
 def dashboard(request):
@@ -120,3 +121,20 @@ def incomeSummary(request):
     # else:
     #     # Do something for anonymous users.
     return render(request, "income/income_summary.html")
+
+@login_required(login_url="login")
+def exportIncome(request):
+    response = HttpResponse(content_type="text/csv")
+
+    w = csv.writer(response)
+    w.writerow(["Amount","Description", "Sources","Time and Date",])
+
+   
+    for income in Income.objects.filter(user=request.user).values_list(
+       "amount", "description", "sources", "date"
+    ):
+        w.writerow(income)
+
+    response["Content-Disposition"] = "attachment; filename=Income_summary.csv"
+    return response
+    
