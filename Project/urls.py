@@ -33,6 +33,7 @@ info_dict = {
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     # Local apps URL Configuration
     path("", include("income.urls")),
     path("accounts/", include("accounts.urls")),

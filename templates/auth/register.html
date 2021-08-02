@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load socialaccount %}
+{% load static %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 <head>
     <meta charset="utf-8">
@@ -35,10 +38,10 @@
                                         class="btn btn-primary btn-user btn-block">
                                         Register Account</button>
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <a href="{% provider_login_url 'google' %}" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <a href="{% provider_login_url 'facebook' method="oauth2" %}" class="btn btn-facebook btn-user btn-block">
                                     <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                 </a>
                             </form>

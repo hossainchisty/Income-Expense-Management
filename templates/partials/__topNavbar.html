@@ -9,7 +9,11 @@
             {% load cache %}
             {% cache 50 sidebar request.user.get_full_name %}                    
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.get_full_name}}</span>
+            {% if user.socialaccount_set.all.0.get_avatar_url %}
+            <img class="img-profile rounded-circle" src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
+            {% else %}
             <img class="img-profile rounded-circle" src="{{ request.user.profile.image.url }}">
+            {% endif %}
             {% endcache %}
         </a>
         <!-- Dropdown - User Information -->

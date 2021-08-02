@@ -102,7 +102,12 @@
                 <div class="p-4 md:p-12 text-center lg:text-left">
                     {% cache 50 sidebar request.user.profile.image.url %}
                     <!-- Image for mobile view-->
+                    {% if user.socialaccount_set.all.0.get_avatar_url %}
+                    <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('{{ user.socialaccount_set.all.0.get_avatar_url }}')"></div>
+                    
+                    {% else %}
                     <div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('{{ request.user.profile.image.url }}')"></div>
+                    {% endif %}
                     
                     <h1 class="text-3xl font-bold pt-8 lg:pt-0">{{request.user.get_full_name}}</h1>
                     <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
@@ -122,8 +127,13 @@
             <!--Img Col-->
             <div class="lg:w-2/5">
                 <!-- Big profile image for side bar (desktop) -->
-                <img src="{{ request.user.profile.image.url }}" 
+                {% if user.socialaccount_set.all.0.get_avatar_url %}
+                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" 
                 class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                {% else %}
+                <img src="{{ request.user.profile.image.url  }}" 
+                class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+                {% endif %}
             </div>
     
             <!-- Pin to top right corner -->

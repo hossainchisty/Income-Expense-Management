@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1:8000", "django-income-expense-manager.herokuapp.com"]
@@ -35,16 +35,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
-    "django.contrib.sitemaps",
     # local apps
     "income.apps.IncomeConfig",
     "expenses.apps.ExpensesConfig",
     "accounts.apps.AccountsConfig",
     # third party apps
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     "django.contrib.humanize",
     "crispy_forms",
     "django_countries",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    # providers to enable for social login:
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook",
+
 ]
 # production
 SITE_ID = 2
@@ -54,6 +61,55 @@ SITE_ID = 2
 
 if DEBUG == False:
     SECURE_SSL_REDIRECT = True
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        # 'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    },
+}
+"""
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+"""
 
 MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -175,8 +231,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 django_heroku.settings(locals())
 
