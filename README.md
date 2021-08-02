@@ -1,7 +1,7 @@
 ### Income & Expense Management System is easiest and user friendly application to control your finance🚀
 
 
-Income vs Expenses is an application that allows you to control the home budget for users who want to save money. Allows easy control over expenses. Income vs Expenses is intuitive, easy to use and fast. Thanks to it, we can control our finances, we know how much we spend, we have more control over money and a smaller saving problem.
+Income & Expense Management System is an application that allows you to control the home budget for users who want to save money. you can control your finances,you Will know how much you spend, you will have more control over money and a smaller saving problem.
 
 
 ![Continuous Integration](https://github.com/github/covid19-dashboard/workflows/CI/badge.svg)
