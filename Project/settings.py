@@ -54,13 +54,13 @@ INSTALLED_APPS = [
 
 ]
 # production
-# SITE_ID = 2
+SITE_ID = 2
 
 # local
-SITE_ID = 3
+# SITE_ID = 3
 
-# if DEBUG == False:
-#     SECURE_SSL_REDIRECT = True
+if DEBUG == False:
+    SECURE_SSL_REDIRECT = True
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
