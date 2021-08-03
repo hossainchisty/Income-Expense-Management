@@ -56,7 +56,7 @@ def dashboard(request):
     else:
         income["amount__sum"]
 
-    totalbalance = float(expense["amount__sum"]) + float(income["amount__sum"])
+    totalbalance = float(income["amount__sum"]) - float(expense["amount__sum"])
     if totalbalance == None:
         # type: ignore
         totalbalance = "0"
