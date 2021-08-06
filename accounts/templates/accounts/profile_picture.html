@@ -228,8 +228,11 @@
             <div class="wrapper bg-white">
                 <h4 class="pb-4 border-bottom">Change Profile Photo</h4>
                     <div class="d-flex align-items-start py-3 border-bottom"> 
+                    {% if user.socialaccount_set.all.0.get_avatar_url %}
+                    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" class="img" alt="{{ request.user}}"> 
+                    {% else %}
                     <img src="{{ request.user.profile.image.url }}" class="img" alt="{{ request.user}}">
-
+                    {% endif %}
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
                             <p>Accepted file type .png. Less than 1MB</p> 

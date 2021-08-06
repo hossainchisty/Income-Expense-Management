@@ -52,5 +52,5 @@ urlpatterns = [
     path("settings/profile/", views.setting, name="setting"),
     path("profile/edit/", ImageUpdateView.as_view(), name="update_image"),
     # password change with old password
-    path("password/change/", views.password_change_form, name="password-change"),
+    path("change/password/", views.password_change_form, name="password-change"),
 ]
