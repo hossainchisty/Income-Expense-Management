@@ -37,52 +37,7 @@ With this expense manager app you can:
 
 Live Demo can be viewed at [Income Expense Manager](https://django-income-expense-manager.herokuapp.com/)
 
-### Setup, Installation and Run
 
-To run the app on your local machine, you need Python 3+, installed on your computer. Follow all the steps to run this project.
-
-1.  Create virtual environment:
-```bash
-virtualenv env_name
-```
-    
-2.  Activate virtual environment:
-```bash
-
-source env_name/bin/activate  # Linux/Mac
-env_name/Scripts/activate  # Windows
-```
-
-3. Firstly you need to clone or download my project from github repositories:
-```bash
-git clone https://github.com/hossainchisty/Income-Expense-Management.git
-
-Cloning into 'Income-Expense-Management'...
-remote: Enumerating objects: 113, done.
-remote: Counting objects: 100% (113/113), done.
-remote: Compressing objects: 100% (80/80), done.
-Receiving objects: 100% (2845/2845), 12.52 MiB | 5.21 MiB/s, done.
-```
-4. Then enter the corresponding directory:
-```bash
-cd Income-Expense-Management
-```
-5. Install dependencies
-```bash
-(env)$ pip install -r requirements.txt
-``` 
-
-6. Run local server, and DONE!
-```python
-(env)$ python manage.py runserver
-```
-
-7.Then go to ```http://127.0.0.1:8000``` in your browser.
-
-### To create superuser open terminal and type:
-```
-(env)$ python manage.py createsuperuser
-```
 ## Deployment
 
 Heroku app is already configured to this repository for *automatic deploys* from any push to the **master** branch. Create a pull request containing your respective changes and wait for merge.
