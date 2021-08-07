@@ -34,3 +34,4 @@ sqlparse==0.4.1
 static3==0.7.0
 urllib3==1.26.6
 whitenoise==5.2.0
+cloudinary==1.26.0
