@@ -1,16 +1,15 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
-
+from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="profiles", default="profiles/default.png")
+    image = CloudinaryField('profile-photo')
     name = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=500, blank=True, null=True)
     bio = models.TextField(null=True, blank=True)
