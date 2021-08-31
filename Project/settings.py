@@ -221,17 +221,7 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
-django_heroku.settings(locals())
-
 # SMTP Configuration
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = config("MAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = config("PASSWORD")
-
-
 EMAIL_HOST = "smtp.zoho.com"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "hossain.chisty@zohomail.com"
@@ -245,3 +235,5 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+django_heroku.settings(locals(), test_runner=False)
