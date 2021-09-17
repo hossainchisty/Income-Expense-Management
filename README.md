@@ -9,8 +9,6 @@ Income & Expense Management System is an application that allows you to control 
 [![Made with Django](https://img.shields.io/badge/Made%20with-Django-1f425f.svg)](https://www.python.org/)
 ### Features of the application✨-
 
-With this expense manager app you can:
-
 • Income & Expense- In this section you can make your income and expense entries..
 
 • Choose from predefined categories or create your own.
@@ -33,19 +31,30 @@ With this expense manager app you can:
 
 • Insightful pie charts. Know category wise spending and income.
 
-• Category- In Category section, you can create multiple categories like lunch,dinner,recharges,travel and you can track your expenditure in particular category.
+### User Account Action✨-
+
+• User will get welcome email after registered. 
+
+• User can sign in with google account. 
+
+• User can update basic information. 
+
+• User can Change Password. 
+
+• User can reset password with mail.
+
+• User can download there income/expenses history as excel file.
+
 
 Live Demo can be viewed at [Income Expense Manager](https://django-income-expense-manager.herokuapp.com/)
 
 
 ## Deployment
-
-Heroku app is already configured to this repository for *automatic deploys* from any push to the **master** branch. Create a pull request containing your respective changes and wait for merge.
+Heroku app is already configured to this repository for *automatic deploys* from any push to the **master** branch.
 
 ## Continuous Integration
 Continuous integration automates the building, testing and deploying of applications. Software projects, whether created by a single individual or entire teams, typically use continuous integration as a hub to ensure important steps such as unit testing are automated rather than manual processes.
 
-Thanks ❤
 Happy Coding 🎉
 <br>
 Author: Hossain Chisty
