@@ -1,42 +1,17 @@
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.shortcuts import render
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.db.models import Avg, Sum, Max, Min, Count
+import csv
+from django.db.models import Sum
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.db.models.functions import (
-    ExtractDay,
-    ExtractHour,
-    ExtractMinute,
-    ExtractMonth,
-    ExtractQuarter,
-    ExtractSecond,
-    ExtractWeek,
-    ExtractIsoWeekDay,
-    ExtractWeekDay,
-    ExtractIsoYear,
-    ExtractYear,
-    Extract,
-)
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-import csv
-import datetime
-from datetime import datetime
-from datetime import timedelta
-from django.db import connection
-from django.utils import timezone
-from django.db.models import F, Q
-from django.http import HttpResponse
-from django.views.decorators.cache import cache_page
-
-# Imports models
 from .models import Income
 from expenses.models import Expense
+
 
 @login_required(login_url="login")
 def dashboard(request):
@@ -44,20 +19,20 @@ def dashboard(request):
     expense = Expense.objects.filter(owner=request.user).aggregate(Sum("amount"))
     income = Income.objects.filter(user=request.user).aggregate(Sum("amount"))
 
-    if expense["amount__sum"] == None:
+    if expense["amount__sum"] is None:
         # type: ignore
         expense["amount__sum"] = "0"
     else:
         expense["amount__sum"]
 
-    if income["amount__sum"] == None:
+    if income["amount__sum"] is None:
         # type: ignore
         income["amount__sum"] = "0"
     else:
         income["amount__sum"]
 
     totalbalance = float(income["amount__sum"]) - float(expense["amount__sum"])
-    if totalbalance == None:
+    if totalbalance is None:
         # type: ignore
         totalbalance = "0"
     else:
@@ -122,14 +97,14 @@ def incomeSummary(request):
     #     # Do something for anonymous users.
     return render(request, "income/income_summary.html")
 
+
 @login_required(login_url="login")
 def exportIncome(request):
     response = HttpResponse(content_type="text/csv")
 
     w = csv.writer(response)
-    w.writerow(["Amount","Description", "Sources","Time and Date",])
+    w.writerow(["Amount", "Description",  "Sources", "Time and Date"])
 
-   
     for income in Income.objects.filter(user=request.user).values_list(
        "amount", "description", "sources", "date"
     ):
@@ -137,4 +112,3 @@ def exportIncome(request):
 
     response["Content-Disposition"] = "attachment; filename=Income_summary.csv"
     return response
-    
