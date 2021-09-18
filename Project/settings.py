@@ -174,11 +174,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Crispy Form Pack - Bootstrap 4
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# Mail configrations
+# SMTP Configuration
 EMAIL_HOST = "smtp.zoho.com"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "hossain.chisty@zohomail.com"
-DEFAULT_FROM_EMAIL = "hossain.chisty@zohomail.com"
+DEFAULT_EMAIL_FROM = '<noreply@hossain.chisty@zohomail.com>'
 EMAIL_HOST_PASSWORD = "#2#3B399TiU@aBC"
 EMAIL_USE_SSL = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -186,6 +186,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)

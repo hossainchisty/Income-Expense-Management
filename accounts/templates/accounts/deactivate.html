@@ -149,14 +149,14 @@
                         Hi <span class="font-weight-bold">{{request.user.username}},</span>
                         <br>
                         <br>
-                        You can disable your account instead of deleting it. This means your account will be hidden until you reactivate it by logging back in.  
+                        This will immediately delete all of your data including tasks, projects, comments, and more. This can’t be undone  
                     </p>
                 </div>           
                 <div class="py-3 pb-4 border-bottom"> 
                     <div class="ml-auto">
                         <a  href="{% url 'deactivateUser' %}"  
                             class="hover:no-underline btn danger">
-                            Temporarily disable my account
+                            Permanently delete account
                         </a>
                     </div>
                 </div>
