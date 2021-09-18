@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import *
+from .views import ImageUpdateView
 from . import views
 from django.contrib.auth import views as auth_views
 from accounts.decorators import unauthenticated_user

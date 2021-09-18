@@ -10,6 +10,7 @@ class Command(BaseCommand):
         if not User.objects.filter(username="superman").exists():
             User.objects.create_superuser(
                 "superman", "superman@gmail.com", "admin")
-            self.stdout.write(self.style.SUCCESS('Successfully created superuser!'))            
+            self.stdout.write(self.style.SUCCESS('Successfully created superuser!'))
+
         else:
             self.stdout.write(self.style.NOTICE('Superuser already exists.'))

@@ -1,25 +1,14 @@
 from django.contrib import messages
-from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, TemplateView, CreateView, UpdateView
-from django.contrib.auth import authenticate, login, update_session_auth_hash
+from django.views.generic import TemplateView
+
 from .forms import RegistrationForm, ProfileForm
 from .decorators import unauthenticated_user
-from django.contrib.auth.forms import (
-    PasswordChangeForm,
-    # A form for allowing a user to change their password.
-    SetPasswordForm,
-    # A form that lets a user change their password without entering the old password.
-    UserChangeForm,
-    # A form used in the admin interface to change a user’s information and permissions.
-    PasswordResetForm,
-    # A form for generating and emailing a one-time use link to reset a user’s password.
-)
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 @unauthenticated_user
@@ -51,9 +40,7 @@ def register(request):
 
 @login_required(login_url="login")
 def password_change_form(request):
-    """
-    A form for allowing a user to change their password.
-    """
+    """A form for allowing a user to change their password."""
     if request.user.is_authenticated:
         if request.method == "POST":
             form = PasswordChangeForm(user=request.user, data=request.POST)
@@ -62,7 +49,6 @@ def password_change_form(request):
                 update_session_auth_hash(request, form.user)
                 messages.success(request, "Password Change Successfully!")
                 return redirect("/")
-
         else:
             form = PasswordChangeForm(user=request.user)
         return render(request, "accounts/password_change.html", {"form": form})

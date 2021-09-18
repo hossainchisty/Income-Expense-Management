@@ -16,19 +16,7 @@ def user_created(sender, instance, created, *args, **kwargs):
     if created:
         user = instance
         profile = Profile.objects.create(user=instance)
-        """
-        subject = "Welcome to Income Expense Manager"
-        message = f"Hi there, \n\n\n Thanks {user.username} for signing up to keep in touch with your finances partner, We're so glad you are here! \n\n We can control our finances, you will know how much you spend, you have more control over money and a smaller saving problem. \n\n\n \n Cheers,\n Dev Team"
-
-        send_mail(
-            subject,
-            message,
-            settings.EMAIL_HOST_USER,
-            [user.email],
-            fail_silently=False,
-        )
-        """
-        body = render_to_string("welcome_email.html", {"user": user})
+        body = render_to_string("welcome_email.html", {"user": user, "profile": profile})
         mail = EmailMessage(
             subject="Welcome to Income Expense Manager🎉",
             body=body,
