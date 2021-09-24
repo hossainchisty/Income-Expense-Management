@@ -11,6 +11,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
 # Configure cloudinary
 cloudinary.config(cloud_name="hossainchisty", api_key="958916513788356", api_secret="2BaQjUoM5jHa3K6VVpbaSs_icBQ")
 
@@ -130,11 +131,16 @@ WSGI_APPLICATION = "Project.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dfan9k2mojnpq6',
+        'USER':'pwjkmojsbvvwmz',
+        'PASSWORD':'a17f719f34be931ca0bfae528039349ee436f29c95caa1c59f49d41f049587a0',
+        'PORT':'5432'
     }
 }
+
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
