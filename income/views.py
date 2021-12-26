@@ -88,16 +88,6 @@ class deleteINcome(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         owner = self.request.user
         return self.model.objects.filter(user=owner)
 
-
-@login_required(login_url="login")
-def incomeSummary(request):
-    # if request.user.is_authenticated:
-    #     # Do something for authenticated users.
-    # else:
-    #     # Do something for anonymous users.
-    return render(request, "income/income_summary.html")
-
-
 @login_required(login_url="login")
 def exportIncome(request):
     response = HttpResponse(content_type="text/csv")
