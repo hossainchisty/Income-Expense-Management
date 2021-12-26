@@ -93,12 +93,12 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>SL.</th>
-                                            <th>Why</th>
-                                            <th>Description</th>
-                                            <th>Balance</th>
-                                            <th>Created at</th>
-                                            <th>Action</th>
+                                            <th class="text-center">SL.</th>
+                                            <th class="text-center">Why</th>
+                                            <th class="text-center">Description</th>
+                                            <th class="text-center">Balance</th>
+                                            <th class="text-center">Created at</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
@@ -106,12 +106,12 @@
                                         
                                         {% for expenses in expenselist %}
                                         <tr>
-                                            <td>{{forloop.counter}}</td>
-                                            <td>{{expenses.why}}</td>
-                                            <td>{{expenses.description}}</td>
-                                            <td>${{expenses.amount}}</td>
-                                            <td>{{expenses.date|naturaltime}}</td>
-                                              <td><i class="material-icons">
+                                            <td class="text-center">{{forloop.counter}}</td>
+                                            <td class="text-center">{{expenses.why}}</td>
+                                            <td class="text-center">{{expenses.description}}</td>
+                                            <td class="text-center">${{expenses.amount}}</td>
+                                            <td class="text-center">{{expenses.date|naturaltime}}</td>
+                                              <td class="text-center"><i class="material-icons">
                                             <a 
                                             href="{% url 'delete' expenses.id %}" class="text-decoration-none text-red-600 hover:text-red-600">Delete</a>
                                             
