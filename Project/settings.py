@@ -18,7 +18,7 @@ cloudinary.config(cloud_name="hossainchisty", api_key="958916513788356", api_sec
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = '_41ckb9(nmeg6*^tg5&jjf8e9s@(yfwl5dxk)1afiy0d720y!4'
 
 DEBUG = True
 
