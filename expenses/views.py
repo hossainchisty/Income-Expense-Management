@@ -56,11 +56,6 @@ class expensesDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 
 @login_required(login_url="login")
-def expenseSummary(request):
-    return render(request, "expenses/expenses_summary.html")
-
-
-@login_required(login_url="login")
 def exportExpense(request):
     response = HttpResponse(content_type='text/csv')
 

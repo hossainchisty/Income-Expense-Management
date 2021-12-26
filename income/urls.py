@@ -7,6 +7,5 @@ urlpatterns = [
     path("income/add/", views.CreateIncome.as_view(), name="addIncome"),
     path("income/delete/<int:pk>/", views.deleteINcome.as_view(), name="delete-income"),
     path("income/update/<int:pk>/", views.UpdateIncome.as_view(), name="update-income"),
-    path("income/summary/", views.incomeSummary, name="income-summary"),
     path("export/", views.exportIncome, name="export-income"),
 ]
