@@ -18,7 +18,7 @@ humanize==3.10.0
 idna==3.2
 mccabe==0.6.1
 oauthlib==3.1.1
-Pillow==8.3.2
+Pillow==9.0.0
 psycopg2==2.9.1
 pycodestyle==2.7.0
 pycparser==2.20
